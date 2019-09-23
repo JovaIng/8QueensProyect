@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace _8QueensProyect
 {
@@ -18,7 +14,11 @@ namespace _8QueensProyect
             LstTablero = lstTablero;
         }
 
-        public bool ValidarFitness()
+        /// <summary>
+        /// Aplica fitness a todos los individuos de la población.
+        /// </summary>
+        /// <returns></returns>
+        public bool GenerarFitnessCromosomas()
         {
             bool success = false;
             int colisiones = 0;
@@ -30,6 +30,21 @@ namespace _8QueensProyect
             return success;
         }
 
+        /// <summary>
+        /// Elimina las colisiones de la generación actual.
+        /// </summary>
+        public void LimpiaColisiones()
+        {
+            foreach (Cromosoma cromosoma in LstCromosomas)
+                cromosoma.Colisiones = 0;
+        }
+
+        /// <summary>
+        /// Obtiene el fitness de un sólo individuo
+        /// </summary>
+        /// <param name="cromosoma"></param>
+        /// <param name="lstTablero"></param>
+        /// <returns></returns>
         public int ObtenerFitnessCromosoma(Cromosoma cromosoma, List<List<int>> lstTablero)
         {
             // para encontrar el número de colisiones es importante analizar por cada gen del cromosoma.
@@ -80,20 +95,60 @@ namespace _8QueensProyect
 
             }
 
-            cromosoma.Fitness = 28 - cromosoma.Colisiones;
             return cromosoma.Colisiones;
         }
 
-        internal List<Cromosoma> ObtenerLosMejores(int limit)
+
+        /// <summary>
+        /// Aplica crossover de dos individuos
+        /// </summary>
+        /// <param name="cromosoma1">Primer hijo.</param>
+        /// <param name="cromosoma2">Segundo hijo.</param>
+        /// <returns>Retorna una lista de los nuevos hijos generados.</returns>
+        public List<Cromosoma> CrossOver(Cromosoma cromosoma1, Cromosoma cromosoma2)
+        {
+            List<Cromosoma> lstCromosomas = new List<Cromosoma>();
+            Cromosoma hijo1 = new Cromosoma();
+            Cromosoma hijo2 = new Cromosoma();
+
+            int interseccion = (cromosoma1.Genes.Count / 2) - 1;
+            for (int i = 0; i < cromosoma1.Genes.Count; i++)
+            {
+                if (i <= interseccion)
+                    hijo1.Genes.Add(cromosoma1.Genes[i]);
+                else
+                    hijo1.Genes.Add(cromosoma2.Genes[0]);
+            }
+
+            for (int i = hijo1.Genes.Count; i > 0; i--)
+                hijo2.Genes.Add(hijo1.Genes[i - 1]);
+
+            lstCromosomas.Add(hijo1);
+            lstCromosomas.Add(hijo2);
+
+            return lstCromosomas;
+        }
+
+        /// <summary>
+        /// Obtiene los peores N individuos de la población actual.
+        /// </summary>
+        /// <param name="limit">N individuos</param>
+        /// <returns>Lista con los mejores N individuos</returns>
+        public List<Cromosoma> ObtenerLosMejores(int limit)
         {
             LstCromosomas.Sort();
             List<Cromosoma> lstCromosomas = new List<Cromosoma>();
-            for (int i = 0; i < 2; i++)
+            for (int i = 0; i < limit; i++)
                 lstCromosomas.Add(LstCromosomas[i]);
             return lstCromosomas;
         }
 
-        internal List<Cromosoma> ObtenerLosPeores(int limit)
+        /// <summary>
+        /// Obtiene los mejores N individuos de la población actual.
+        /// </summary>
+        /// <param name="limit"></param>
+        /// <returns></returns>
+        public List<Cromosoma> ObtenerLosPeores(int limit)
         {
             LstCromosomas.Sort();
             List<Cromosoma> lstCromosomas = new List<Cromosoma>();
@@ -102,6 +157,11 @@ namespace _8QueensProyect
             return lstCromosomas;
         }
 
+        /// <summary>
+        /// Determina el nivel en el tablero en el que se encuentra la posición de la reina indicada con el parámetro posición.
+        /// </summary>
+        /// <param name="posicion">Posición de la reina a analizar.</param>
+        /// <returns></returns>
         public int ObtieneNivel(int posicion)
         {
             int nivel = 0;
