@@ -35,11 +35,13 @@
             this.dgvIndividuos = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txbNumGeneraciones = new System.Windows.Forms.TextBox();
+            this.txbGeneraciones = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txbTamTablero = new System.Windows.Forms.TextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.chFitness = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label4 = new System.Windows.Forms.Label();
+            this.tbxPoblacionInicial = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvIndividuos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chFitness)).BeginInit();
             this.SuspendLayout();
@@ -48,9 +50,9 @@
             // 
             this.btnGenerar.Location = new System.Drawing.Point(12, 634);
             this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(264, 49);
+            this.btnGenerar.Size = new System.Drawing.Size(270, 49);
             this.btnGenerar.TabIndex = 0;
-            this.btnGenerar.Text = "Generar entorno";
+            this.btnGenerar.Text = "Generar solución";
             this.btnGenerar.UseVisualStyleBackColor = true;
             this.btnGenerar.Click += new System.EventHandler(this.BtnGenerar_Click);
             // 
@@ -59,7 +61,7 @@
             this.dgvIndividuos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvIndividuos.Location = new System.Drawing.Point(12, 36);
             this.dgvIndividuos.Name = "dgvIndividuos";
-            this.dgvIndividuos.Size = new System.Drawing.Size(270, 475);
+            this.dgvIndividuos.Size = new System.Drawing.Size(270, 439);
             this.dgvIndividuos.TabIndex = 1;
             // 
             // label1
@@ -80,28 +82,30 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Máximo de generaciones: ";
             // 
-            // txbNumGeneraciones
+            // txbGeneraciones
             // 
-            this.txbNumGeneraciones.Location = new System.Drawing.Point(149, 537);
-            this.txbNumGeneraciones.Name = "txbNumGeneraciones";
-            this.txbNumGeneraciones.Size = new System.Drawing.Size(127, 20);
-            this.txbNumGeneraciones.TabIndex = 4;
+            this.txbGeneraciones.Location = new System.Drawing.Point(149, 537);
+            this.txbGeneraciones.Name = "txbGeneraciones";
+            this.txbGeneraciones.Size = new System.Drawing.Size(133, 20);
+            this.txbGeneraciones.TabIndex = 4;
+            this.txbGeneraciones.Text = "1000";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 582);
+            this.label3.Location = new System.Drawing.Point(9, 582);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(104, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Tamaño del tablero: ";
             // 
-            // textBox1
+            // txbTamTablero
             // 
-            this.textBox1.Location = new System.Drawing.Point(149, 579);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(127, 20);
-            this.textBox1.TabIndex = 6;
+            this.txbTamTablero.Location = new System.Drawing.Point(149, 579);
+            this.txbTamTablero.Name = "txbTamTablero";
+            this.txbTamTablero.Size = new System.Drawing.Size(133, 20);
+            this.txbTamTablero.TabIndex = 6;
+            this.txbTamTablero.Text = "8";
             // 
             // chFitness
             // 
@@ -119,15 +123,34 @@
             this.chFitness.TabIndex = 7;
             this.chFitness.Text = "Fitness";
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 501);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(86, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Población inicial:";
+            // 
+            // tbxPoblacionInicial
+            // 
+            this.tbxPoblacionInicial.Location = new System.Drawing.Point(149, 498);
+            this.tbxPoblacionInicial.Name = "tbxPoblacionInicial";
+            this.tbxPoblacionInicial.Size = new System.Drawing.Size(133, 20);
+            this.tbxPoblacionInicial.TabIndex = 9;
+            this.tbxPoblacionInicial.Text = "100";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.tbxPoblacionInicial);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.chFitness);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txbTamTablero);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.txbNumGeneraciones);
+            this.Controls.Add(this.txbGeneraciones);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvIndividuos);
@@ -148,11 +171,13 @@
         private System.Windows.Forms.DataGridView dgvIndividuos;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txbNumGeneraciones;
+        private System.Windows.Forms.TextBox txbGeneraciones;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txbTamTablero;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chFitness;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbxPoblacionInicial;
     }
 }
 

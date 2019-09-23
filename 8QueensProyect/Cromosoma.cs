@@ -11,7 +11,7 @@ namespace _8QueensProyect
         public List<int> Genes{ get; set; }
         public int Colisiones { get; set; }
 
-        public int Fitness { get; set; }
+        public int GlobalFitness { get; set; }
         public int Generacion { get; set; }
         public int Numero { get; set; }
 
