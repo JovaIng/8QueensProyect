@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.btnGenerar = new System.Windows.Forms.Button();
             this.dgvIndividuos = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -48,9 +48,9 @@
             // 
             // btnGenerar
             // 
-            this.btnGenerar.Location = new System.Drawing.Point(12, 634);
+            this.btnGenerar.Location = new System.Drawing.Point(12, 624);
             this.btnGenerar.Name = "btnGenerar";
-            this.btnGenerar.Size = new System.Drawing.Size(270, 49);
+            this.btnGenerar.Size = new System.Drawing.Size(329, 59);
             this.btnGenerar.TabIndex = 0;
             this.btnGenerar.Text = "Generar solución";
             this.btnGenerar.UseVisualStyleBackColor = true;
@@ -61,7 +61,7 @@
             this.dgvIndividuos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvIndividuos.Location = new System.Drawing.Point(12, 36);
             this.dgvIndividuos.Name = "dgvIndividuos";
-            this.dgvIndividuos.Size = new System.Drawing.Size(270, 439);
+            this.dgvIndividuos.Size = new System.Drawing.Size(329, 439);
             this.dgvIndividuos.TabIndex = 1;
             // 
             // label1
@@ -86,7 +86,7 @@
             // 
             this.txbGeneraciones.Location = new System.Drawing.Point(149, 537);
             this.txbGeneraciones.Name = "txbGeneraciones";
-            this.txbGeneraciones.Size = new System.Drawing.Size(133, 20);
+            this.txbGeneraciones.Size = new System.Drawing.Size(192, 20);
             this.txbGeneraciones.TabIndex = 4;
             this.txbGeneraciones.Text = "1000";
             // 
@@ -103,23 +103,23 @@
             // 
             this.txbTamTablero.Location = new System.Drawing.Point(149, 579);
             this.txbTamTablero.Name = "txbTamTablero";
-            this.txbTamTablero.Size = new System.Drawing.Size(133, 20);
+            this.txbTamTablero.Size = new System.Drawing.Size(192, 20);
             this.txbTamTablero.TabIndex = 6;
             this.txbTamTablero.Text = "8";
             // 
             // chFitness
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chFitness.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chFitness.Legends.Add(legend1);
-            this.chFitness.Location = new System.Drawing.Point(308, 36);
+            chartArea4.Name = "ChartArea1";
+            this.chFitness.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chFitness.Legends.Add(legend4);
+            this.chFitness.Location = new System.Drawing.Point(370, 36);
             this.chFitness.Name = "chFitness";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chFitness.Series.Add(series1);
-            this.chFitness.Size = new System.Drawing.Size(1030, 647);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chFitness.Series.Add(series4);
+            this.chFitness.Size = new System.Drawing.Size(968, 647);
             this.chFitness.TabIndex = 7;
             this.chFitness.Text = "Fitness";
             // 
@@ -136,7 +136,7 @@
             // 
             this.tbxPoblacionInicial.Location = new System.Drawing.Point(149, 498);
             this.tbxPoblacionInicial.Name = "tbxPoblacionInicial";
-            this.tbxPoblacionInicial.Size = new System.Drawing.Size(133, 20);
+            this.tbxPoblacionInicial.Size = new System.Drawing.Size(192, 20);
             this.tbxPoblacionInicial.TabIndex = 9;
             this.tbxPoblacionInicial.Text = "100";
             // 

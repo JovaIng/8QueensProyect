@@ -6,7 +6,8 @@ namespace _8QueensProyect
     public class FitnessPopulationAnalizer
     {
         public List<Cromosoma> LstCromosomas { get; set; }
-        public int PromedioColisiones { get; set; }
+        public int colisionesPoblacion { get; set; }
+        public int fitnessPoblacion { get; set; }
         public List<List<int>> LstTablero { get; set; }
         public List<Cromosoma> LstElite { get; set; }
 
@@ -64,7 +65,10 @@ namespace _8QueensProyect
             // Nivel 6 => (48, 55)
             // Nivel 7 => (56, 63)
 
+            this.colisionesPoblacion = 0;
+            this.fitnessPoblacion = 0;
             cromosoma.Colisiones = 0;
+
             List<int> lstNiveles = new List<int>();
             for (int i = 0; i < cromosoma.Genes.Count; i++)
             {
@@ -95,14 +99,9 @@ namespace _8QueensProyect
                 }
 
                 // analizar diagonal.
-
             }
 
-            if (cromosoma.Colisiones.Equals(0))
-            {
-                string p = string.Empty;
-            }
-
+            cromosoma.Fitness = 28 - cromosoma.Colisiones;
             return cromosoma.Colisiones;
         }
 

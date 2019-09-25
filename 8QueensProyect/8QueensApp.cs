@@ -71,7 +71,8 @@ namespace _8QueensProyect
                 List<Cromosoma> lstHijos = fitnessAnalizer.CrossOver(lstMejores[0], lstMejores[1], random);
 
                 // mutamos uno de los hijos eligiendolo al azar.
-                fitnessAnalizer.Mutar(lstHijos[random.Next(0, lstHijos.Count - 1)], (tamTablero * tamTablero) - 1, random);
+                foreach(Cromosoma cromosoma in lstHijos)
+                    fitnessAnalizer.Mutar(cromosoma, (tamTablero * tamTablero) - 1, random);
 
                 // estos 2 hijos sustituirán a los dos peores de la población actual.
                 List<Cromosoma> lstPeores = fitnessAnalizer.ObtenerLosPeores(2);
@@ -98,6 +99,7 @@ namespace _8QueensProyect
             {
                 dgvIndividuos.Columns.Add("cromosomas", "Cromosomas");
                 dgvIndividuos.Columns.Add("colisiones", "Colisiones");
+                dgvIndividuos.Columns.Add("fitness", "Fitness");
             }
 
             //lstCromosomas.Sort();
@@ -107,7 +109,7 @@ namespace _8QueensProyect
                 foreach (int gen in lstCromosomas[i].Genes)
                     genes += string.Format(" {0}", gen.ToString("00"));
 
-                dgvIndividuos.Rows.Add(genes.Trim(), lstCromosomas[i].Colisiones);
+                dgvIndividuos.Rows.Add(genes.Trim(), lstCromosomas[i].Colisiones, lstCromosomas[i].Fitness);
             }
         }
 
