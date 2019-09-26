@@ -1,8 +1,10 @@
-﻿using System;
+﻿using SpreadsheetLight;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,12 +14,9 @@ namespace _8QueensProyect
 {
     public partial class Form1 : Form
     {
-        Random random;
-        List<Cromosoma> lstIndividuos = null;
         public Form1()
         {
             InitializeComponent();
-            random = new Random();
         }
 
 
@@ -51,18 +50,20 @@ namespace _8QueensProyect
         private void GeneraSolucion(int numGeneraciones, int tamTablero, int poblacionInicial)
         {
             bool success = false;
-            List<List<int>> lstTablero = new List<List<int>>();
-            lstTablero = GeneraTablero(tamTablero);
-            lstIndividuos = GeneraPoblacion(poblacionInicial, tamTablero);
-
-            FitnessPopulationAnalizer fitnessAnalizer = new FitnessPopulationAnalizer(lstIndividuos, lstTablero);
+            Random random = new Random();
+            List<Cromosoma> lstIndividuos = GeneraPoblacion(poblacionInicial, tamTablero, random);
+            FitnessPopulationAnalizer fitnessAnalizer = new FitnessPopulationAnalizer(lstIndividuos);
 
             this.Cursor = Cursors.WaitCursor;
-            while (numGeneraciones >= 0 && fitnessAnalizer.LstElite.Count.Equals(0))
+            int generaciones = 0;
+            List<int> lstGeneraciones = new List<int>();
+            List<float> lstFitness = new List<float>();
+            while (generaciones < numGeneraciones && fitnessAnalizer.LstElite.Count.Equals(0))
             {
-                numGeneraciones--;
+                generaciones++;
                 fitnessAnalizer.GenerarFitnessPoblacion();
-
+                lstFitness.Add(fitnessAnalizer.fitnessPoblacion);
+                lstGeneraciones.Add(generaciones);
                 // de manera aleatoria elegimos 5 individuos de la población actual y obtenemos los mejores 2 de esa selección.
                 List<Cromosoma> lstAux = fitnessAnalizer.ObtenerIndividuosAleatorios(5, random);
                 List<Cromosoma> lstMejores = fitnessAnalizer.ObtenerLosMejores(2, lstAux);
@@ -70,9 +71,12 @@ namespace _8QueensProyect
                 // los 2 mejores obtenidos los cruzamos y obtenemos dos hijos resultantes.
                 List<Cromosoma> lstHijos = fitnessAnalizer.CrossOver(lstMejores[0], lstMejores[1], random);
 
-                // mutamos uno de los hijos eligiendolo al azar.
-                foreach(Cromosoma cromosoma in lstHijos)
-                    fitnessAnalizer.Mutar(cromosoma, (tamTablero * tamTablero) - 1, random);
+                // mutamos a los hijos si no son la solución.
+                foreach (Cromosoma cromosoma in lstHijos)
+                {
+                    if (fitnessAnalizer.ObtenerFitnessCromosoma(cromosoma) != 0)
+                        fitnessAnalizer.Mutar(cromosoma, cromosoma.Genes.Count - 1, random);
+                }
 
                 // estos 2 hijos sustituirán a los dos peores de la población actual.
                 List<Cromosoma> lstPeores = fitnessAnalizer.ObtenerLosPeores(2);
@@ -80,12 +84,40 @@ namespace _8QueensProyect
             }
 
             ActualizaInformacion(lstIndividuos);
+            GenerarArchivo(fitnessAnalizer);
             this.Cursor = Cursors.Default;
         }
 
+        private void GenerarArchivo(FitnessPopulationAnalizer fitnessPopulationAnalizer)
+        {
+            string pathGeneraciones = AppDomain.CurrentDomain.BaseDirectory + "generaciones.txt";
+            string pathFitness = AppDomain.CurrentDomain.BaseDirectory + "fitness.txt";
+
+            if (File.Exists(pathGeneraciones))
+                File.Delete(pathGeneraciones);
+
+            if (File.Exists(pathFitness))
+                File.Delete(pathFitness);
+
+            try
+            {
+                StreamWriter sw = new StreamWriter(pathGeneraciones);
+                sw.WriteLine("Generación");
+                for (int i = 0; i < fitnessPopulationAnalizer.LstCromosomas.Count; i++)
+                    sw.WriteLine(i + 1);
+                sw.Close();
+
+                sw = new StreamWriter(pathFitness);
+                sw.WriteLine("Fitness");
+                for (int i = fitnessPopulationAnalizer.LstCromosomas.Count - 1; i >= 0; i--)
+                    sw.WriteLine(fitnessPopulationAnalizer.LstCromosomas[i].Fitness);
+                sw.Close();
+            }
+            catch (Exception) { }
+        }
 
         /// <summary>
-        /// Actualiza el listado actual de cromosomas en pantalla
+        /// Actualiza el listado actual de cromosomas y la gráfica de fitness por generación.
         /// </summary>
         /// <param name="lstCromosomas">lista completa de la población actual</param>
         private void ActualizaInformacion(List<Cromosoma> lstCromosomas)
@@ -102,7 +134,6 @@ namespace _8QueensProyect
                 dgvIndividuos.Columns.Add("fitness", "Fitness");
             }
 
-            //lstCromosomas.Sort();
             for (int i = 0; i < lstCromosomas.Count; i++)
             {
                 string genes = string.Empty;
@@ -111,6 +142,8 @@ namespace _8QueensProyect
 
                 dgvIndividuos.Rows.Add(genes.Trim(), lstCromosomas[i].Colisiones, lstCromosomas[i].Fitness);
             }
+
+
         }
 
         /// <summary>
@@ -118,14 +151,14 @@ namespace _8QueensProyect
         /// </summary>
         /// <param name="poblacion">número de individuos a generar</param>
         /// <returns></returns>
-        private List<Cromosoma> GeneraPoblacion(int poblacion, int longitud)
+        private List<Cromosoma> GeneraPoblacion(int poblacion, int longitud, Random random)
         {
             List<Cromosoma> lstIndividuos = new List<Cromosoma>();
             for (int i = 0; i < poblacion; i++)
             {
                 Cromosoma cromosoma = new Cromosoma();
                 cromosoma.Numero = i;
-                cromosoma.Genes = GeneraGenesCromosoma(longitud);
+                cromosoma.Genes = GeneraGenesCromosoma(longitud, random);
                 lstIndividuos.Add(cromosoma);
             }
 
@@ -139,65 +172,36 @@ namespace _8QueensProyect
         /// <param name="min">valor mínimo</param>
         /// <param name="max">valor máximo</param>
         /// <returns></returns>
-        private List<int> GeneraGenesCromosoma(int longitud)
+        private List<int> GeneraGenesCromosoma(int longitud, Random random)
         {
-            int min = 0;
-            int max = longitud * longitud;
-
             List<int> genes = new List<int>();
             for (int i = 0; i < longitud; i++)
             {
                 bool success = false;
                 while (!success)
                 {
-                    int gen = random.Next(min, max);
-                    if (!genes.Contains(gen))
-                    {
+                    int gen = random.Next(0, longitud - 1);
+                    if (success = !genes.Contains(gen))
                         genes.Add(gen);
-                        success = true;
+                    else
+                    {
+                        int aux = gen + 1;
+                        if (success = (gen <= longitud&& !genes.Contains(aux)))
+                            genes.Add(aux);
+                        else
+                        {
+                            aux = aux - 2;
+                            if (aux >= 0)
+                            {
+                                if (success = !genes.Contains(aux))
+                                    genes.Add(aux);
+                            }
+                        }
                     }
                 }
             }
 
             return genes;
-        }
-
-        /// <summary>
-        /// Genera el tablero de NxN según longitud.
-        /// </summary>
-        /// <param name="longitud">longitud del tablero cuadrado</param>
-        /// <returns></returns>
-        public List<List<int>> GeneraTablero(int longitud)
-        {
-            List<List<int>> lstNiveles = new List<List<int>>();
-            int posiciones = longitud * longitud;
-
-            int minAnterior = 0;
-            for (int i = 0; i < longitud; i++)
-            {
-                int min = minAnterior;
-                int max = min + (longitud - 1);
-                lstNiveles.Add(GeneraNiveles(min, max));
-                minAnterior = max + 1;
-            }
-
-            return lstNiveles;
-        }
-
-        /// <summary>
-        /// Genera un solo nivel del tablero, los niveles son las filas, el llenado es con consecutivos de un valor mínimo a un valor máximo.
-        /// </summary>
-        /// <param name="inferior">valor mínimo</param>
-        /// <param name="superior">valor máximo</param>
-        /// <returns></returns>
-        private List<int> GeneraNiveles(int inferior, int superior)
-        {
-            Random random = new Random();
-            List<int> lstPosiciones = new List<int>();
-            for (int i = inferior; i <= superior; i++)
-                lstPosiciones.Add(i);
-
-            return lstPosiciones;
         }
 
         public void EnabledControls(bool enabled)
