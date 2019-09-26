@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{83C833C9-5139-4167-AC44-F0B9B53C9668}</ProjectGuid>
+    <ProjectGuid>{84F82416-5B6B-422C-B01E-AE189F0BB507}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>_8QueensProyect</RootNamespace>
     <AssemblyName>8QueensProyect</AssemblyName>
@@ -33,21 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-<<<<<<< HEAD
     <Reference Include="System" />
     <Reference Include="System.Core" />
-=======
-    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
-    </Reference>
-    <Reference Include="SpreadsheetLight, Version=3.4.11.0, Culture=neutral, PublicKeyToken=32fbb46dc1730c57, processorArchitecture=MSIL">
-      <HintPath>..\packages\SpreadsheetLight.3.4.11\lib\net40\SpreadsheetLight.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Runtime.Serialization" />
->>>>>>> desarrollo
-    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -57,37 +44,20 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-<<<<<<< HEAD
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FitnessAnalizer.cs" />
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-=======
-    <Reference Include="WindowsBase" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="FitnessPopulationAnalizer.cs" />
-    <Compile Include="8QueensApp.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="8QueensApp.Designer.cs">
-      <DependentUpon>8QueensApp.cs</DependentUpon>
->>>>>>> desarrollo
-    </Compile>
     <Compile Include="Cromosoma.cs" />
+    <Compile Include="FitnessPopulationAnalizer.cs" />
+    <Compile Include="8QueensMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="8QueensMain.Designer.cs">
+      <DependentUpon>8QueensMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-<<<<<<< HEAD
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
-=======
-    <EmbeddedResource Include="8QueensApp.resx">
-      <DependentUpon>8QueensApp.cs</DependentUpon>
->>>>>>> desarrollo
+    <EmbeddedResource Include="8QueensMain.resx">
+      <DependentUpon>8QueensMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -98,10 +68,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-=======
-    <None Include="packages.config" />
->>>>>>> desarrollo
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

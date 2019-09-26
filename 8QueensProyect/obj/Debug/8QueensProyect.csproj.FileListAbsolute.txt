@@ -1,17 +1,10 @@
-C:\Users\Jovan\Documents\Github\8QueensProyect\8QueensProyect\bin\Debug\8QueensProyect.exe.config
-C:\Users\Jovan\Documents\Github\8QueensProyect\8QueensProyect\bin\Debug\8QueensProyect.exe
-C:\Users\Jovan\Documents\Github\8QueensProyect\8QueensProyect\bin\Debug\8QueensProyect.pdb
-C:\Users\Jovan\Documents\Github\8QueensProyect\8QueensProyect\obj\Debug\8QueensProyect.csprojAssemblyReference.cache
-C:\Users\Jovan\Documents\Github\8QueensProyect\8QueensProyect\obj\Debug\_8QueensProyect.Form1.resources
-C:\Users\Jovan\Documents\Github\8QueensProyect\8QueensProyect\obj\Debug\_8QueensProyect.Properties.Resources.resources
-C:\Users\Jovan\Documents\Github\8QueensProyect\8QueensProyect\obj\Debug\8QueensProyect.csproj.GenerateResource.cache
-C:\Users\Jovan\Documents\Github\8QueensProyect\8QueensProyect\obj\Debug\8QueensProyect.csproj.CoreCompileInputs.cache
-C:\Users\Jovan\Documents\Github\8QueensProyect\8QueensProyect\obj\Debug\8QueensProyect.exe
-C:\Users\Jovan\Documents\Github\8QueensProyect\8QueensProyect\obj\Debug\8QueensProyect.pdb
-<<<<<<< HEAD
-=======
-C:\Users\Jovan\Documents\Github\8QueensProyect\8QueensProyect\bin\Debug\SpreadsheetLight.dll
-C:\Users\Jovan\Documents\Github\8QueensProyect\8QueensProyect\bin\Debug\SpreadsheetLight.xml
-C:\Users\Jovan\Documents\Github\8QueensProyect\8QueensProyect\obj\Debug\8QueensProyect.csproj.CopyComplete
-C:\Users\Jovan\Documents\Github\8QueensProyect\8QueensProyect\bin\Debug\DocumentFormat.OpenXml.dll
->>>>>>> desarrollo
+C:\Users\Jovan\Desktop\8QueensProyect\8QueensProyect\obj\Debug\8QueensProyect.csprojAssemblyReference.cache
+C:\Users\Jovan\Desktop\8QueensProyect\8QueensProyect\obj\Debug\_8QueensProyect.Form1.resources
+C:\Users\Jovan\Desktop\8QueensProyect\8QueensProyect\obj\Debug\_8QueensProyect.Properties.Resources.resources
+C:\Users\Jovan\Desktop\8QueensProyect\8QueensProyect\obj\Debug\8QueensProyect.csproj.GenerateResource.cache
+C:\Users\Jovan\Desktop\8QueensProyect\8QueensProyect\obj\Debug\8QueensProyect.csproj.CoreCompileInputs.cache
+C:\Users\Jovan\Desktop\8QueensProyect\8QueensProyect\bin\Debug\8QueensProyect.exe.config
+C:\Users\Jovan\Desktop\8QueensProyect\8QueensProyect\bin\Debug\8QueensProyect.exe
+C:\Users\Jovan\Desktop\8QueensProyect\8QueensProyect\bin\Debug\8QueensProyect.pdb
+C:\Users\Jovan\Desktop\8QueensProyect\8QueensProyect\obj\Debug\8QueensProyect.exe
+C:\Users\Jovan\Desktop\8QueensProyect\8QueensProyect\obj\Debug\8QueensProyect.pdb

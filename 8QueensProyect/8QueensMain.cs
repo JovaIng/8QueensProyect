@@ -1,13 +1,7 @@
-﻿using SpreadsheetLight;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _8QueensProyect
@@ -186,7 +180,7 @@ namespace _8QueensProyect
                     else
                     {
                         int aux = gen + 1;
-                        if (success = (gen <= longitud&& !genes.Contains(aux)))
+                        if (success = (gen <= longitud && !genes.Contains(aux)))
                             genes.Add(aux);
                         else
                         {
@@ -212,3 +206,4 @@ namespace _8QueensProyect
         }
     }
 }
+
