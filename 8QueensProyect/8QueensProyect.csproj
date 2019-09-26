@@ -33,8 +33,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Reference Include="System" />
     <Reference Include="System.Core" />
+=======
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
+    <Reference Include="SpreadsheetLight, Version=3.4.11.0, Culture=neutral, PublicKeyToken=32fbb46dc1730c57, processorArchitecture=MSIL">
+      <HintPath>..\packages\SpreadsheetLight.3.4.11\lib\net40\SpreadsheetLight.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+>>>>>>> desarrollo
     <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -45,6 +57,7 @@
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+<<<<<<< HEAD
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FitnessAnalizer.cs" />
@@ -53,12 +66,28 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+=======
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FitnessPopulationAnalizer.cs" />
+    <Compile Include="8QueensApp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="8QueensApp.Designer.cs">
+      <DependentUpon>8QueensApp.cs</DependentUpon>
+>>>>>>> desarrollo
     </Compile>
     <Compile Include="Cromosoma.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< HEAD
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+=======
+    <EmbeddedResource Include="8QueensApp.resx">
+      <DependentUpon>8QueensApp.cs</DependentUpon>
+>>>>>>> desarrollo
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -69,6 +98,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+<<<<<<< HEAD
+=======
+    <None Include="packages.config" />
+>>>>>>> desarrollo
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
